@@ -39,7 +39,7 @@ func (l *LinkedList) Add(val int) {
 	}
 }
 
-func (l *LinkedList) Pop() int {
+func (l *LinkedList) Pop() *int {
 	cur := l.Head
 	pred := &Node{
 		Val:  0,
@@ -50,7 +50,7 @@ func (l *LinkedList) Pop() int {
 		pred = pred.Next
 	}
 	pred.Next = nil
-	return cur.Val
+	return &cur.Val
 }
 
 func (l *LinkedList) Size() int {
@@ -101,13 +101,13 @@ func (l *LinkedList) UpdateAt(pos, val int) {
 	}
 }
 
-func New(arr []int) LinkedList {
+func New(arr []int) *LinkedList {
 	res := LinkedList{Head: nil}
 	if len(arr) == 0 {
-		return res
+		return &res
 	}
 	for i := 0; i < len(arr); i++ {
 		res.Add(arr[i])
 	}
-	return res
+	return &res
 }
