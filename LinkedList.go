@@ -25,9 +25,9 @@ func (l *LinkedList) String() string {
 	return fmt.Sprint(res)
 }
 
-func (l *LinkedList) Add(val int) *LinkedList {
-	if l == nil {
-		l = New([]int{val})
+func (l *LinkedList) Add(val int) {
+	if l.Head == nil {
+		l.Head = &Node{Val: val, Next: nil}
 	} else {
 		cur := l.Head
 		for cur.Next != nil {
@@ -37,7 +37,6 @@ func (l *LinkedList) Add(val int) *LinkedList {
 			Val:  val,
 			Next: nil}
 	}
-	return l
 }
 
 func (l *LinkedList) Pop() int {
@@ -55,7 +54,7 @@ func (l *LinkedList) Pop() int {
 }
 
 func (l *LinkedList) Size() int {
-	if l == nil {
+	if l.Head == nil {
 		return 0
 	}
 	cur := l.Head
@@ -102,13 +101,13 @@ func (l *LinkedList) UpdateAt(pos, val int) {
 	}
 }
 
-func New(arr []int) *LinkedList {
+func New(arr []int) LinkedList {
+	res := LinkedList{Head: nil}
 	if len(arr) == 0 {
-		return nil
+		return res
 	}
-	res := LinkedList{Head: &Node{Val: arr[0], Next: nil}}
-	for i := 1; i < len(arr); i++ {
+	for i := 0; i < len(arr); i++ {
 		res.Add(arr[i])
 	}
-	return &res
+	return res
 }

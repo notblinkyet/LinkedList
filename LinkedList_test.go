@@ -6,7 +6,7 @@ import (
 
 func TestNew(t *testing.T) {
 	s := []int{1, 2, 3, 4, 5}
-	wait := &LinkedList{
+	wait := LinkedList{
 		&Node{Val: 1, Next: &Node{
 			Val: 2,
 			Next: &Node{
@@ -26,7 +26,7 @@ func TestNew(t *testing.T) {
 		t.Errorf("\nNew Error;\nWait: %s;\nHave: %s;\n", wait.String(), fact.String())
 	}
 
-	wait = nil
+	wait = LinkedList{Head: nil}
 	fact = New([]int{})
 	if wait.String() != fact.String() {
 		t.Errorf("\nNew Error with empty Array;\nWait: %s;\nHave: %s;\n", wait.String(), fact.String())
@@ -36,14 +36,14 @@ func TestNew(t *testing.T) {
 func TestAdd(t *testing.T) {
 	wait := New([]int{1, 2, 3, 4, 5})
 	fact := New([]int{1, 2, 3, 4})
-	fact = fact.Add(5)
+	fact.Add(5)
 	if wait.String() != fact.String() {
 		t.Errorf("\nAdd Error;\nWait: %s;\nHave: %s;\n", wait.String(), fact.String())
 	}
 
 	wait = New([]int{1})
 	fact = New([]int{})
-	fact = fact.Add(1)
+	fact.Add(1)
 	if wait.String() != fact.String() {
 		t.Errorf("\nAdd Error with empty Array;\nWait: %s;\nHave: %s;\n", wait.String(), fact.String())
 	}
